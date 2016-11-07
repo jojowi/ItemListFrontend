@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class = "row">
+        <div class="col-md-2">
+            <p>
+        Search:
+        <input ng-model="$ctrl.query" class="form-control"/>
+      </p>
+            <p>
+                Sort by:
+                <select ng-model="$ctrl.orderProp" class="form-control">
+                    <option value="id">ID</option>
+                    <option value="name">Name</option>
+                    <option value="count">Count</option>
+                    <option value="price">Price</option>
+                </select>
+            </p>
+        </div>
+        <div class="col-md-10">
+            <table class="table table-hover">
+        <tr>
+            <td>ItemID</td>
+            <td>Name</td>
+            <td>Count</td>
+            <td>Price</td>
+            <td>Sum</td>
+            <td>Delete</td>
+        </tr>
+        <tr ng-repeat="item in $ctrl.items | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td><div class="col-xs-2"><input class="form-control" type = "number" id = "count" ng-model = "item.count" integer min="0"></div></td>
+            <td>{{item.price}}</td>
+            <td><b>{{item.count * item.price}}</b></td>
+            <td><input class="btn btn-danger" value="Delete" type="submit" ng-click="$ctrl.remove({'id':item.id,'name':item.name,'count':0,'price':item.price})"></td>
+        </tr>
+        <tr>
+            <td>Sum</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>{{$ctrl.sum($ctrl.items | filter:$ctrl.query)}}</b></td>
+            <td></td>
+        </tr>
+    </table>
+                  <form ng-submit="$ctrl.addItem" class="form-inline">
+        <input class="form-control" type="number" ng-model="$ctrl.itemID"  size="30"
+               placeholder="ID" integer min="0">
+                      <input class="form-control" type="text" ng-model="$ctrl.itemName"  size="30"
+               placeholder="Name" >
+                      <input class="form-control" type="number" ng-model="$ctrl.itemPrice"  size="30"
+               placeholder="Price" integer min="0">
+                      <input class="btn btn-success" type="submit" ng-click="$ctrl.add()" value="Add">
+      </form>
+        </div>
+        
+    </div>
+</div>
