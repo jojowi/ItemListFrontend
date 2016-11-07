@@ -7,9 +7,10 @@ angular.
     templateUrl: 'item-list/item-list.template.html',
     controller: ['Item',
       function ItemListController(Item) {
-        var self = this;
+          
         this.items = Item.query({address:"items"});
         this.orderProp = "id";
+          
         this.sum = function sum(items){
             var res = 0;
             var item;
@@ -18,6 +19,7 @@ angular.
             }
             return res;
         }
+        
         this.add = function add(){
             var item = {id:this.itemID,name:this.itemName,count:0,price:this.itemPrice};
             Item.saveItem({address:"additem"},item);
@@ -26,10 +28,12 @@ angular.
             this.itemName = "";
             this.itemPrice = "";
         }
+        
         this.remove = function remove(item){
             Item.removeItem({address:"removeitem"},item);
             this.items.splice(this.items.indexOf(item),1);
         }
+        
       }
     ]
   });
