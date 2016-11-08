@@ -10,6 +10,7 @@ angular.
           
         this.items = Item.query({address:"items"});
         this.orderProp = "id";
+        this.orderDir = "asc";
           
         this.sum = function sum(items){
             var res = 0;
