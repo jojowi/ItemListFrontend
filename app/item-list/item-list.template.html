@@ -29,7 +29,7 @@
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>
-                        <div class="col-xs-2"><input class="form-control" type = "number" id = "count" ng-model = "item.count" integer min="0"></div>
+                        <div class="col-xs-2"><input class="form-control input-number" type = "number" id = "count" ng-model = "item.count" integer min="0"></div>
                     </td>
                     <td>{{item.price}}</td>
                     <td><b>{{item.count * item.price}}</b></td>
@@ -49,7 +49,7 @@
             <form ng-submit="$ctrl.addItem" class="form-inline">
                 <input class="form-control" type="number" ng-model="$ctrl.itemID"  size="30" placeholder="ID" integer min="0">
                 <input class="form-control" type="text" ng-model="$ctrl.itemName"  size="30" placeholder="Name" >
-                <input class="form-control" type="number" ng-model="$ctrl.itemPrice"  size="30" placeholder="Price" integer min="0">
+                <input class="form-control" type="number" ng-model="$ctrl.itemPrice"  size="30" placeholder="Price" ng-required="required" min="0">
                 <input class="btn btn-success" type="submit" ng-click="$ctrl.add()" value="Add">
             </form>
         </div>
